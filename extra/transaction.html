@@ -1,0 +1,29 @@
+<form action="/reversal" method="post" id="reversalForm">
+    <label for="senderUsername">Your Username:</label>
+    <input type="text" name="senderUsername" required><br>
+
+    <label for="receiverUsername">Receiver's Username:</label>
+    <input type="text" name="receiverUsername" required><br>
+
+    <label for="transferAmount">Amount to Transfer:</label>
+    <input type="text" name="transferAmount" required><br>
+
+    <input type="submit" value="Request Reversal">
+</form>
+
+<script>
+document.getElementById('reversalForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('/reversal', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+    });
+});
+</script>
