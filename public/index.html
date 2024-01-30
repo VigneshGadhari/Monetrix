@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+  body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('MONETRIX\ \(6\).png') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.form-container {
+  background-color: rgba(245, 224, 243, 0.959);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+.form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form h2 {
+  margin: 0;
+}
+
+.form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form button {
+  padding: 10px;
+  background-color: #0920c9;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.form-toggle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form-toggle button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: none;
+  color: #333;
+  cursor: pointer;
+}
+
+.form-toggle button:hover {
+  color: #1b4776;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ </style>
+  <title>Money Transfer Website</title>
+</head>
+<body oncontextmenu="return false;">
+</body>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <div class="form-toggle">
+        <button id="login-toggle" onclick="toggleForm('login')">Login</button>
+        <button id="signup-toggle" onclick="toggleForm('signup')">Sign Up</button>
+      </div>
+      <form id="login-form" action="/login" method="post" class="form">
+        <h2>Login</h2>
+        <div class="input-container">
+        <input type="text" placeholder="Username" name = "username" required>
+        <input type="password" placeholder="Password" name = "password" required>
+        <!-- <input type="number" id="otp" placeholder="Enter OTP phonenumber" name = "otp"> -->
+      </div>
+        <button type="submit">Login</button>
+      </form>
+      <form id="signup-form" class="form" action = "/signup" method = "post" style="display: none;">
+  <h2>Sign Up</h2>
+  <div class="input-container"> 
+  <input type="text" placeholder="Username" name = "username" required>
+  <input type="tel" id="phone" placeholder="Phone Number" name = "phone" pattern="[0-9]{10}" required>
+  <input type="email" placeholder="Email" name = "email" required>
+  <input type="password" placeholder="Create Password" name = "password" required>
+  <!-- <input type="number" id="otp" placeholder="Enter OTP phonenumber" name = "otp" > -->
+  <!-- <p>Upload PAN card:</p> -->
+  <!-- <input type="file" accept="image/*" required> -->
+  </div>
+  <button type="submit">Sign Up</button>
+</form>
+
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

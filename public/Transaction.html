@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONETRIX</title>
+    <style>
+        ul { 
+        list-style-type: none ;
+        padding: 0;
+        margin: 0; 
+        }
+
+        ul li {
+            display: inline-block;
+            margin-right: 10px ;
+        }
+
+        ul li a {
+            color:#fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3;
+        }
+        ul li a:hover {
+            background-color: #0a0606;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('MONETRIX/ (6).png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+        }
+        header {
+            background-color: #05090be8;
+            color: #ed0f0f00;
+            padding: 10px;
+            text-align: right;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            border: 1px solid #ccc;
+            padding: 100px;
+            background-color: #f9f9f9bd;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #010c16;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        #balance {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #010a13;
+            color: #f8f1f1;
+            padding: 5px 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        
+        <nav>
+            <ul>
+              <li><a href="homepage2.html">HOME</a></li>
+              <!-- <li><a href="about.html">ABOUT</a></li>
+              <li><a href="customers.html">CUSTOMERS</a></li> -->
+              <li><a href="transaction_history.html">Statement</a></li>
+              <li><a href="account..html">MY ACCOUNT</a></li>
+              <!-- <li><a href="contact.html">CONTACT US</a></li> -->
+            </ul>
+        </nav>
+    </header>
+    <div style="text-align: right ;">
+        <button onclick="reverseTransaction()" type="reversal" id="reversal-button" style="margin-left: -10px;">Reversal</button>
+    </div>
+    
+    <div class="container">
+        <h1>Monetrix</h1>
+        <form id="transaction-form" action="/transaction" method="post">
+            <label for="sender-id">Sender ID:</label>
+            <input type="text" id="sender-id" name="senderID" required>
+
+            <label for="payee-id">Payee ID:</label>
+            <input type="text" id="payee-id" name="payeeID" required>
+            
+            <label for="transaction-amount">Transaction Amount:</label>
+            <input type="number" id="transaction-amount" name="amount" step="0.01" required>
+
+            <label for="remarks">Remarks:</label>
+            <input type="text" id="remarks" name="remarks">
+
+            
+            
+            <button type="submit" id="submit-button">Transfer</button>
+        </form>
+    </div>
+
+    <script>
+        function reverseTransaction() {
+          // Make an AJAX request to trigger the reversal
+          fetch('/reverse-transaction', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ transactionID: 'your-transaction-id' }), // Replace with the actual transaction ID
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data); // Log the response from the server
+              // You can update the UI or show a message based on the response
+            })
+            .catch(error => {
+              console.error(error);
+              // Handle errors
+            });
+        }
+
+      </script>
+      
+</body>
+</html>
