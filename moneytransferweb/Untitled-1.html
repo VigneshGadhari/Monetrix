@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="1.css">
+  <title>Money Transfer Website</title>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <div class="form-toggle">
+        <button id="login-toggle" onclick="toggleForm('login')">Login</button>
+        <button id="signup-toggle" onclick="toggleForm('signup')">Sign Up</button>
+      </div>
+      <form id="login-form" class="form">
+        <h2>Login</h2>
+        <div class="input-container">
+          <input type="text" placeholder="Username" required>
+          <input type="password" placeholder="Password" required>
+          <input type="number" id="otp" placeholder="Enter OTP" required>
+        </div>
+        <div>
+          <button type="submit">Login</button>
+          <button type="submit">Send OTP</button>
+        </div>
+      </form>      
+      <form id="signup-form" class="form" style="display: none;">
+  <h2>Sign Up</h2>
+  <div class="input-container">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Username" required>
+    <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+    <input type="email" placeholder="Email" required>
+    <input type="number" id="otp" placeholder="Enter OTP" required>
+  </div>
+  
+   <button type="submit">Sign Up</button>
+  <button type="submit">Send OTP</button>
+  </div>
+</form>
+
+      </form>
+    </div>
+  </div>
+  <script> 
+    // Inside your script.js file
+
+function toggleForm(formType) {
+  if (formType === 'login') {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('signup-form').style.display = 'none';
+  } else if (formType === 'signup') {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('signup-form').style.display = 'block';
+  }
+
+  // Toggle the OTP field visibility
+  var otpField = document.getElementById("otp");
+  otpField.style.display = formType === 'login' ? 'block' : 'none';
+}
+
+// Add the following function to handle form submission
+document.getElementById("login-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  var username = document.getElementById("login-form").elements["username"].value;
+  var password = document.getElementById("login-form").elements["password"].value;
+  var otp = document.getElementById("otp").value;
+
+  // Add code to send the username, password, and OTP to your backend for verification
+  // You'll need a backend service to handle OTP generation and verification
+
+  // For now, you can just log the values to the console
+  console.log("Username:", username);
+  console.log("Password:", password);
+  console.log("OTP:", otp);
+
+  // Reset the form (remove this line if you want to keep the values in the form for testing)
+  document.getElementById("login-form").reset();
+});
+
+// Add the following function to handle signup form submission
+document.getElementById("signup-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  var fullName = document.getElementById("signup-form").elements["full-name"].value;
+  var signupUsername = document.getElementById("signup-form").elements["signup-username"].value;
+  var phone = document.getElementById("phone").value;
+  var email = document.getElementById("signup-form").elements["email"].value;
+  var password = document.getElementById("signup-form").elements["create-password"].value;
+  var otp = document.getElementById("otp").value;
+
+  // Add code to send the signup details and OTP to your backend for verification
+  // You'll need a backend service to handle OTP generation and verification for signup
+
+  // For now, you can just log the values to the console
+  console.log("Full Name:", fullName);
+  console.log("Signup Username:", signupUsername);
+  console.log("Phone:", phone);
+  console.log("Email:", email);
+  console.log("Password:", password);
+  console.log("OTP:", otp);
+
+  // Reset the form (remove this line if you want to keep the values in the form for testing)
+  document.getElementById("signup-form").reset();
+});
+
+  
+  </script>
+</body>
+</html>

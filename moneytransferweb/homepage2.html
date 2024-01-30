@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monetrix Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('MONETRIX\ \(6\).png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .box {
+            width: 250px;
+            height: 150px;
+            background-color: #ffffffb8;
+            margin: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        .balance-box {
+            width: 250px;
+            height: 150px;
+            background-color: #0cbd12ba;
+            color: #fff;
+            border: 2px solid #4CAF50;
+            margin: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .balance-box:hover {
+            transform: scale(1.05);
+        }
+        #logout-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#logout-button:hover {
+    background-color: #d32f2f;
+}
+
+    </style>
+</head>
+<body>
+    <button id="logout-button" onclick="logout()">Logout</button>
+
+    <div class="container">
+        <div class="row">
+            <div class="box" onclick="redirectTo('Transaction.html')">
+                <h2>Transfer</h2>
+            </div>
+            <div class="box" onclick="redirectTo('account.html')">
+                <h2>Account</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box" onclick="redirectTo('transaction_history.html')">
+                <h2>Transaction History</h2>
+            </div>
+            <div class="box" onclick="redirectTo('profile.html')">
+                <h2>Profile</h2>
+            </div>
+            <div class="balance-box" onclick="displayBalance()">
+                <h2>Your Balance</h2>
+                <p id="balance">100,000.00</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+        function displayBalance() {
+            const balanceElement = document.getElementById('balance');
+            balanceElement.textContent = 'Fetching balance...';
+
+            setTimeout(() => {
+                balanceElement.textContent = '20,500.00';
+            }, 2000);
+        }
+        function logout() {
+    // Perform any logout actions here, such as clearing session data or redirecting to a logout page.
+    // For example:
+    // Clearing local storage and redirecting to the login page
+    localStorage.clear();
+    window.location.href = 'index.html';
+}
+
+    </script>
+</body>
+</html>

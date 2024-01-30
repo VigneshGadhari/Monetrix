@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Money Transfer Website</title>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <div class="form-toggle">
+        <button id="login-toggle" onclick="toggleForm('login')">Login</button>
+        <button id="signup-toggle" onclick="toggleForm('signup')">Sign Up</button>
+      </div>
+      <form id="login-form" class="form">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <form id="signup-form" class="form" style="display: none;">
+  <h2>Sign Up</h2>
+  <input type="text" placeholder="Full Name" required>
+  <input type="text" placeholder="Username" required>
+  <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+  <input type="email" placeholder="Email" required>
+  <input type="password" placeholder="Create Password" required>
+  <p>Upload PAN card:</p>
+  <input type="file" accept="image/*" required>
+  <button type="submit">Sign Up</button>
+</form>
+
+      </form>
+    </div>
+  </div>
+  <script src="script.js">
+    function handleReversal() {
+        const transactionID = prompt("Enter Transaction ID for Reversal:");
+
+        if (transactionID) {
+            // Make an HTTP POST request to the server to perform the reversal
+            fetch('/reverse-transaction', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ transactionID }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // Handle the response from the server
+                    alert(data.message);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('An error occurred during the reversal request.');
+                });
+        }
+    }
+
+    document.getElementById('reversal-button').addEventListener('click', handleReversal);
+  </script>
+</body>
+</html>

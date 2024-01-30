@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Log</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #020311fa;
+            
+        }
+
+        /* body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('MONETRIX\ \(6\).png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } */
+
+     
+header {
+    background-color: #000000e8;
+    color: #000000e8;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* background: url('MONETRIX\ \(6\).png') no-repeat center center fixed;
+            background-size: cover; */
+    
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 15px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for a subtle lift */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        
+        <nav>
+            <ul>
+              <li><a href="homepage2.html">HOME</a></li>
+              <!-- <li><a href="about.html">ABOUT</a></li>
+              <li><a href="customers.html">CUSTOMERS</a></li> -->
+              <li><a href="profile.html">Profile</a></li>
+              <li><a href="account..html">MY ACCOUNT</a></li>
+              <!-- <li><a href="contact.html">CONTACT US</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Date</th>
+                    <th onclick="sortTable(1)">Transaction ID</th>
+                    <th onclick="sortTable(2)">Description</th>
+                    <th onclick="sortTable(3)">Amount</th>
+                </tr>
+            </thead>
+            <tbody id="transactionTableBody">
+                <!-- Transaction log entries will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Assume you have an array of transaction objects like this
+        let transactions = [
+            { date: '2023-09-30', id: '12345', description: 'Payment from John Doe', amount: 100.00 },
+            { date: '2023-10-01', id: '54321', description: 'Payment from Jane Smith', amount: 75.50 },
+            // Add more transactions as needed
+        ];
+
+        // Function to dynamically populate the transaction table
+        function populateTransactionTable() {
+            const tableBody = document.getElementById('transactionTableBody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            transactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction.date}</td>
+                    <td>${transaction.id}</td>
+                    <td>${transaction.description}</td>
+                    <td>${transaction.amount}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to sort the table based on the selected column
+        function sortTable(columnIndex) {
+            transactions.sort((a, b) => {
+                const keyA = Object.values(a)[columnIndex];
+                const keyB = Object.values(b)[columnIndex];
+
+                if (typeof keyA === 'string') {
+                    return keyA.localeCompare(keyB);
+                } else {
+                    return keyA - keyB;
+                }
+            });
+
+            populateTransactionTable();
+        }
+
+        // Call the function to populate the table initially
+        populateTransactionTable();
+    </script>
+
+</body>
+</html>
